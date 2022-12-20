@@ -4,6 +4,7 @@ const express = require("express")
 const morgan = require("morgan")
 const methodOverride = require("method-override")
 const mongoose = require("mongoose")
+const routes= require('./routes/todoroute')
 
 //create express app
 const app = express()
@@ -17,12 +18,9 @@ mongoose.connection
 .on("close", () => console.log("Disconnected from Mongo"))
 .on("error", (error) => console.log(error))
 
-//register my middleware
+app.use(routes)
 
-//routes and routers
-app.get("/", (req, res)=> {
-    res.send("<h1>Server is working</h1>")
-})
+
 
 
 //start the server 
